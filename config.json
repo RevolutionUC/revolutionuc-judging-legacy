@@ -1,0 +1,31 @@
+{
+    "generalGroupCount": 4,
+    "generalJudgesPerGroup": 2,
+    "generalGroupsPerProject": 4,
+
+    "titleColumn": "Submission Title",
+    "categoryColumn": "Opt-in prize",
+
+    "groups": [
+        {
+            "name1": "John Doe",
+            "name2": "Jane Doe",
+            "projects": []
+        },
+        {
+            "name1": "Foo Bar",
+            "name2": "Baz Bar",
+            "projects": []
+        },
+        {
+            "name1": "Lorem Ipsum",
+            "name2": "Dolor Sit",
+            "projects": []
+        },
+        {
+            "name1": "I Ran Out",
+            "name2": "Of Names",
+            "projects": []
+        }
+    ]
+}
