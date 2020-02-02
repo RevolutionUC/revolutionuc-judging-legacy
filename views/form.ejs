@@ -1,0 +1,79 @@
+<div class="container mt-4">
+    <h1>Judging sheet generator for RevUC</h1>
+
+    <form id="config-form" class="mb-4">
+        
+        <h3 class="mt-4">Configuration</h3>
+        <div class="form-group">
+            <label for="generalGroupCount">General Group Count</label>
+            <input type="number" class="form-control" id="generalGroupCount" required>
+        </div>
+        <div class="form-group">
+            <label for="generalJudgesPerGroup">General Judges Per Group</label>
+            <input type="number" class="form-control" id="generalJudgesPerGroup" required>
+        </div>
+        <div class="form-group">
+            <label for="generalGroupsPerProject">General Groups Per Project</label>
+            <input type="number" class="form-control" id="generalGroupsPerProject" required>
+        </div>
+        
+        <h3 class="mt-4">Data file (CSV exported by devpost)</h3>
+        <div class="form-group">
+            <input type="file" class="" id="dataFile" required>
+        </div>
+        <div class="form-group">
+            <label for="titleColumn">Column name For Submission Title Field (leave blank for default)</label>
+            <input type="text" class="form-control" id="titleColumn" placeholder="Submission Title">
+        </div>
+        <div class="form-group">
+            <label for="categoryColumn">Column name For Category Submission Field (leave blank for default)</label>
+            <input type="text" class="form-control" id="categoryColumn" placeholder="Opt-in prize">
+        </div>
+        <div class="form-group">
+            <label for="tableNumberColumn">Column name For Table Number Field (leave blank for default)</label>
+            <input type="text" class="form-control" id="tableNumberColumn" placeholder="What Is Your Table Number?">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/sheets" class="btn btn-success">Generate Sheets</a>
+    </form>
+
+    <script>
+        const form = document.getElementById('config-form');
+        form.onsubmit = e => {
+
+            e.preventDefault();
+            const form = e.target
+            const formData = new FormData();
+
+            ['generalGroupCount',
+            'generalJudgesPerGroup',
+            'generalGroupsPerProject',
+            'titleColumn',
+            'categoryColumn',
+            'tableNumberColumn'].forEach(key => {
+                formData.append(key, form[key].value)
+            });
+            const file = form['dataFile'].files.item(0);
+
+            const ext = file.name.split('.').pop();
+
+            if (ext !== 'csv') {
+                alert('Please upload a csv file!');
+                return;
+            }
+
+            formData.append('dataFile', file, 'data.csv');
+
+            const req = new XMLHttpRequest();
+            req.open('POST', '/submit');
+            req.send(formData);
+            req.addEventListener('load', res=> {
+                window.location = '/sheets'
+            });
+            req.addEventListener('error', err=> {
+                alert('Error! Try again')
+            });
+        }
+    </script>
+</div>

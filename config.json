@@ -1,0 +1,9 @@
+{
+    "generalGroupCount": 4,
+    "generalJudgesPerGroup": 2,
+    "generalGroupsPerProject": 4,
+
+    "titleColumn": "Submission Title",
+    "categoryColumn": "Opt-in prize",
+    "tableNumberColumn": "What Is Your Table Number?"
+}

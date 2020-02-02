@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="invisible-to-print">
+        <button class="btn btn-primary" id="cmd">Don't click me!</button>
+    </div>
+    <% Groups.forEach( group=> { %>
+        <% for( let i = 0; i < config['generalJudgesPerGroup']; i++ ) { %> 
+            <div class="judge">
+                <h3><%= group.name %></h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Table</th>
+                            <th scope="col">Project Title</th>
+                            <th scope="col">Learning</th>
+                            <th scope="col">Execution</th>
+                            <th scope="col">Originality</th>
+                            <th scope="col">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% group.projects.forEach( project=> { %>
+                        <tr>
+                            <td><%= project[ config.tableNumberColumn ] %></td>
+                            <td><%= project[ config.titleColumn ] %></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <span style="visibility: hidden;">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </span>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+    <% }) %>
+    <% Object.keys(Categories).forEach( c=> { %>
+        <div class="judge">
+            <h3><%= c %></h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Table</th>
+                        <th scope="col">Project Title</th>
+                        <th scope="col">Learning</th>
+                        <th scope="col">Execution</th>
+                        <th scope="col">Originality</th>
+                        <th scope="col">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Categories[c].forEach(project=> { %>
+                    <tr>
+                        <td><%= project[ config.tableNumberColumn ] %></td>
+                        <td><%= project[ config.titleColumn ] %></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <span style="visibility: hidden;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </span>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% }) %>
+
+</div>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script>
+    $('#cmd').click(function () {
+        window.print()
+    });
+</script>

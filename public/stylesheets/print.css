@@ -1,0 +1,9 @@
+@page {
+    size: landscape;
+}
+.invisible-to-print {
+    display: none;
+}
+.judge {
+    page-break-after: always;
+}
